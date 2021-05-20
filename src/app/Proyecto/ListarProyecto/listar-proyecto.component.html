@@ -1,0 +1,28 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container profile-page">
+    <div class="row">
+        <div *ngFor="let proyecto of proyectos" class="col-xl-6 col-lg-7 col-md-12">
+            <div class="card profile-header">
+                <div class="body">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="profile-image float-md-right"> <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""> </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-12">
+                            <h4 class="m-t-0 m-b-0">{{proyecto.nombre}}</h4>
+                            <span class="job_post">ID: {{proyecto.id}}</span>
+                            <p>
+                                <span><strong>Fecha Inicio - Fin:</strong> {{proyecto.fechaInicio | date }} - {{proyecto.fechaFin | date }}</span>
+                            </p>
+                            <div>
+                                <button style="margin-right: 15px;" class="btn btn-outline-primary btn-round">Editar</button>
+                                <button style="margin-right: 15px;" class="btn btn-outline-primary btn-round btn-simple">Tareas</button>
+                                <button style="margin-right: 15px;" class="btn btn-outline-danger btn-round">Eliminar</button>
+                            </div>
+                        </div>                
+                    </div>
+                </div>                    
+            </div>
+        </div>
+	</div>
+</div>
