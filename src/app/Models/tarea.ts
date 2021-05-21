@@ -2,17 +2,16 @@ import { Proyecto } from "./proyecto";
 import { Usuario } from "./usuario";
 
 export class Tarea {
-    id?: number;
-    proyecto: Proyecto;
-    usuario: Usuario;
+    id: number;
+    proyecto?: Proyecto;
+    usuario?: Usuario;
     nombre: string;
     descripcion: string;
     fechaInicio: Date;
     fechaFin: Date;
 
-    constructor(proyecto: Proyecto, usuario: Usuario, nombre: string, descripcion: string, fechaInicio: Date, fechaFin: Date){
-        this.proyecto = proyecto;
-        this.usuario = usuario;
+    constructor(nombre: string, descripcion: string, fechaInicio: Date, fechaFin: Date){
+        this.id = 0;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;

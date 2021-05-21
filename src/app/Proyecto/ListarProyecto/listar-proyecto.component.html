@@ -15,9 +15,9 @@
                                 <span><strong>Fecha Inicio - Fin:</strong> {{proyecto.fechaInicio | date }} - {{proyecto.fechaFin | date }}</span>
                             </p>
                             <div>
-                                <button style="margin-right: 15px;" class="btn btn-outline-primary btn-round">Editar</button>
-                                <button style="margin-right: 15px;" class="btn btn-outline-primary btn-round btn-simple">Tareas</button>
-                                <button style="margin-right: 15px;" class="btn btn-outline-danger btn-round">Eliminar</button>
+                                <button style="margin-right: 15px;" class="btn btn-outline-primary btn-round btn-simple" routerLink="/homework/{{proyecto.id}}"><i class="fas fa-stream"></i></button>
+                                <button style="margin-right: 15px;" class="btn btn-outline-primary btn-round" routerLink="/edit/{{proyecto.id}}"><i class="fas fa-marker"></i></button>
+                                <button style="margin-right: 15px;" class="btn btn-outline-danger btn-round" (click)="borrar(proyecto.id)"><i class="far fa-trash-alt"></i></button>
                             </div>
                         </div>                
                     </div>

@@ -1,1 +1,74 @@
-<p>listar-tarea works!</p>
+<div class="container db-social ">
+    <div class="jumbotron jumbotron-fluid"></div>
+    <div class="container-fluid">
+        <div class="row justify-content-center ">
+            <div class="col-xl-11">
+                <div class="widget head-profile has-shadow">
+                    <div class="row justify-content-center align-items-center text-center">
+                        <div class="col-2">
+                            <div class="infos"></div>
+                            <div class="location">
+                                <span>Tareas del proyecto</span>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <h2>{{proyecto.nombre}}</h2>
+                        </div>
+                        <div class="col-2">
+                                <a class="btn btn-outline-success" routerLink="/addHomework/{{proyecto.id}}"><i class="la la-user-plus"></i>Añadir tarea</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--   LISTADO DE TAREAS  -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="col-md-12">
+    <div *ngFor="let tarea of tareas" class="card b-1 hover-shadow mb-20">
+        <div class="media card-body">
+            <div class="media-body">
+                <div class="mb-2">
+                    <span class="fs-20 pr-16">{{tarea.nombre}}</span>
+                </div>
+                <div class="mb-2">
+                    <small class="fs-16 fw-300 ls-1">{{tarea.descripcion}}</small>
+                </div>
+            </div>
+            <div class="media-right text-right d-none d-md-block">
+                <p class="fs-14 text-fade mb-12"><i class="far fa-user"></i> Usuario</p>
+            </div>
+        </div>
+        <footer class="card-footer flexbox align-items-center">
+            <div>
+                <strong>Fecha Inicio: </strong>
+                <span>{{tarea.fechaInicio | date}} - </span>
+                <strong>Fecha Fin: </strong>
+                <span>{{tarea.fechaFin | date}}</span>
+            </div>
+            <div class="card-hover-show">
+                <a class="btn btn-xs fs-10 btn-bold btn-outline-info mr-2" ><i class="fas fa-marker"></i></a>
+                <a class="btn btn-xs fs-10 btn-bold btn-outline-primary mr-2"><i class="far fa-eye"></i></a>
+                <a class="btn btn-xs fs-10 btn-bold btn-outline-danger" ><i class="far fa-trash-alt"></i></a>
+            </div>
+        </footer>
+    </div>
+    <!--
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+        </ul>
+    </nav>
+    <br>
+    -->
+</div>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Proyecto } from 'src/app/Models/proyecto';
 import { ProyectoService } from 'src/app/service/proyecto.service';
 
@@ -10,7 +12,7 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
 export class ListarProyectoComponent implements OnInit {
 
   proyectos: Proyecto[] = [];
-  constructor(private service: ProyectoService) { }
+  constructor(private service: ProyectoService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarProyectos();
@@ -26,6 +28,23 @@ export class ListarProyectoComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  borrar(id: number) {
+    this.service.delete(id).subscribe(
+      data => {
+        this.toastr.success('Proyecto eliminado', 'Eliminado', {
+          timeOut: 3000
+        });
+
+        this.cargarProyectos();
+      }, 
+      err => {
+        this.toastr.error('No se puede eliminar porque quedan tareas pendientes', 'Error', {
+          timeOut: 3000
+        });
+      }
+    );
   }
 
 }

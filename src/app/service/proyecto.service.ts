@@ -18,16 +18,16 @@ export class ProyectoService {
     return this.httpClient.get<Proyecto[]>(this.URL + '/all');
   }
 
-  public conParametro(id: number): Observable<Proyecto>{
+  public getProject(id: number): Observable<Proyecto>{
 
-    return this.httpClient.get<Proyecto>(this.URL + `proyecto/${id}`);
+    return this.httpClient.get<Proyecto>(this.URL + `get/${id}`);
   }
 
   public add(proyecto: Proyecto): Observable<any>{
     return this.httpClient.post<any>(this.URL + 'add', proyecto);
   }
 
-  public update(id: number, proyecto: Proyecto): Observable<any>{
+  public update(id: number, proyecto?: Proyecto): Observable<any>{
     return this.httpClient.put<any>(this.URL + `update/${id}`, proyecto);
   }
 

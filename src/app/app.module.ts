@@ -19,6 +19,7 @@ import { AddTareaComponent } from './Tarea/AddTarea/add-tarea.component';
 import { EditTareaComponent } from './Tarea/EditTarea/edit-tarea.component';
 import { ListarTareaComponent } from './Tarea/ListarTarea/listar-tarea.component';
 import { VerTareaComponent } from './Tarea/VerTarea/ver-tarea.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { VerTareaComponent } from './Tarea/VerTarea/ver-tarea.component';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
     HttpClientModule,
-    FormsModule 
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
