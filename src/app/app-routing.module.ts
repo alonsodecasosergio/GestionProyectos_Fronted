@@ -5,6 +5,7 @@ import { EditProyectoComponent } from './Proyecto/EditProyecto/edit-proyecto.com
 import { ListarProyectoComponent } from './Proyecto/ListarProyecto/listar-proyecto.component';
 import { AddTareaComponent } from './Tarea/AddTarea/add-tarea.component';
 import { ListarTareaComponent } from './Tarea/ListarTarea/listar-tarea.component';
+import { LoginComponent } from './Usuarios/Login/login.component';
 
 const routes: Routes = [
   {path: '', component: ListarProyectoComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'nuevo', component: AddProyectoComponent},
   {path: 'edit/:id', component: EditProyectoComponent},
   {path: 'addHomework/:id', component: AddTareaComponent},
+  {path: 'login', component: LoginComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
