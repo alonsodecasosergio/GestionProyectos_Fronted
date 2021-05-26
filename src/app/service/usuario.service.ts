@@ -15,4 +15,8 @@ export class UsuarioService {
   public add(id: number, usuario: Usuario): Observable<any>{
     return this.httpClient.post<any>(this.URL + 'register', usuario);
   }
+
+  public checked(email: string, password: string): Observable<Usuario>{
+    return this.httpClient.post<any>(this.URL + 'checked', {email: email, password: password});
+  }
 }
