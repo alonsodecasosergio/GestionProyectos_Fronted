@@ -57,7 +57,7 @@ export class EditTareaComponent implements OnInit {
       this.toastr.error('Error al editar la tarea', 'Error', {
         timeOut: 3000
       });
-      this.router.navigate(['/']);
+      this.router.navigate(['homework/' + this.tarea.proyecto.id]);
     } 
 
     );
