@@ -5,6 +5,7 @@ import { EditProyectoComponent } from './Proyecto/EditProyecto/edit-proyecto.com
 import { ListarProyectoComponent } from './Proyecto/ListarProyecto/listar-proyecto.component';
 import { VerProyectoComponent } from './Proyecto/VerProyecto/ver-proyecto.component';
 import { AddTareaComponent } from './Tarea/AddTarea/add-tarea.component';
+import { EditTareaComponent } from './Tarea/EditTarea/edit-tarea.component';
 import { ListarTareaComponent } from './Tarea/ListarTarea/listar-tarea.component';
 import { AddUsuarioComponent } from './Usuarios/AddUsuario/add-usuario.component';
 import { LoginComponent } from './Usuarios/Login/login.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registrar', component: AddUsuarioComponent},
   {path: 'myProyect', component: VerProyectoComponent},
+  {path: 'homework/update/:id', component: EditTareaComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 

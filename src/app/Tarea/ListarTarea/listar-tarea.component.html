@@ -50,9 +50,9 @@
                 <span>{{tarea.fechaFin | date}}</span>
             </div>
             <div class="card-hover-show">
-                <a class="btn btn-xs fs-10 btn-bold btn-outline-info mr-2" *ngIf="emailUsuarioConectado == tarea.usuario.email"><i class="fas fa-marker"></i></a>
+                <a class="btn btn-xs fs-10 btn-bold btn-outline-info mr-2" *ngIf="emailUsuarioConectado == tarea.usuario.email" routerLink="/homework/update/{{tarea.id}}"><i class="fas fa-marker"></i></a>
                 <a class="btn btn-xs fs-10 btn-bold btn-outline-primary mr-2"><i class="far fa-eye"></i></a>
-                <a class="btn btn-xs fs-10 btn-bold btn-outline-danger" *ngIf="emailUsuarioConectado == tarea.usuario.email"><i class="far fa-trash-alt"></i></a>
+                <a class="btn btn-xs fs-10 btn-bold btn-outline-danger" *ngIf="emailUsuarioConectado == tarea.usuario.email" (click)="borrar(tarea.id)"><i class="far fa-trash-alt"></i></a>
             </div>
         </footer>
     </div>

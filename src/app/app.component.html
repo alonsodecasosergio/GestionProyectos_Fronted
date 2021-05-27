@@ -18,7 +18,7 @@
         <a class="nav-link" data-toggle="modal" routerLink="/login" *ngIf="emailUsuarioConectado == ''"><i class="fas fa-sign-in-alt"></i> Acceder</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" (click)="logOut()" *ngIf="emailUsuarioConectado != ''"><i class="fas fa-sign-out-alt"></i> Salir</a>
+        <a class="nav-link" data-toggle="modal" routerLink="" (click)="logOut()" *ngIf="emailUsuarioConectado != ''"><i class="fas fa-sign-out-alt"></i> Salir</a>
       </li>
     </ul>
   </div>

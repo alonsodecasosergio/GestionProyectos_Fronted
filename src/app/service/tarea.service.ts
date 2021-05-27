@@ -27,7 +27,11 @@ export class TareaService {
     return this.httpClient.post<any>(this.URL + 'add', tarea);
   }
 
-  public delete(id: number): Observable<any> {
+  public get(id: number): Observable<Tarea>{
+    return this.httpClient.get<any>(this.URL + `get/${id}`);
+  }
+
+  public delete(id: number): Observable<Tarea> {
     return this.httpClient.delete<any>(this.URL + `del/${id}`);
   }
 

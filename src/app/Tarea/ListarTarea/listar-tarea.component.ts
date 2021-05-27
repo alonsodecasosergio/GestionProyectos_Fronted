@@ -48,4 +48,20 @@ export class ListarTareaComponent implements OnInit {
       }
     )
   }
+
+  borrar(id: number) {
+    this.service.delete(id).subscribe(
+      data => {
+        this.toastr.success('Tarea eliminada', 'Eliminado', {
+          timeOut: 3000
+        });
+        this.cargarHomeworks();
+      }, 
+      err => {
+        this.toastr.error('La tarea no ha podido ser eliminada', 'Error', {
+          timeOut: 3000
+        });
+      }
+    );
+  }
 }
