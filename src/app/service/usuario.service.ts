@@ -12,7 +12,7 @@ export class UsuarioService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public add(id: number, usuario: Usuario): Observable<any>{
+  public add(usuario: Usuario): Observable<any>{
     return this.httpClient.post<any>(this.URL + 'register', usuario);
   }
 

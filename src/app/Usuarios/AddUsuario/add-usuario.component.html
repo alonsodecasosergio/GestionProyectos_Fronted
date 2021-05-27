@@ -1,1 +1,44 @@
-<p>add-usuario works!</p>
+<div class="register">
+    <form class="custom-form" method="post">
+      <h1>Register</h1>
+      <input
+        type="text"
+        [(ngModel)]="nombre"
+        name="nombre"
+        placeholder="Nombre"
+        required="required"
+      />
+      <input
+        type="text"
+        [(ngModel)]="apellidos"
+        name="apellidos"
+        placeholder="Apellidos"
+        required="required"
+      />
+      <select name="idProyecto" [(ngModel)]="seleccionado" (change)="capturar()" required>
+          <option *ngFor="let proyecto of proyectos" [value]="proyecto.id">{{proyecto.nombre}}</option>
+      </select>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="Email"
+        required="required"
+      />
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Contraseña"
+        required="required"
+      />
+      <input
+        type="password"
+        [(ngModel)]="confirmPassword"
+        name="confirmPassword"
+        placeholder="Repite la contraseña"
+        required="required"
+      />
+      <button type="submit" (click)="register()">Register</button>
+    </form>
+</div>

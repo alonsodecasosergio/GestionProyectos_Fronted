@@ -20,6 +20,7 @@ import { ListarTareaComponent } from './Tarea/ListarTarea/listar-tarea.component
 import { VerTareaComponent } from './Tarea/VerTarea/ver-tarea.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './Usuarios/Login/login.component';
+import { AddUsuarioComponent } from './Usuarios/AddUsuario/add-usuario.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LoginComponent } from './Usuarios/Login/login.component';
     EditTareaComponent,
     ListarTareaComponent,
     VerTareaComponent,
-    LoginComponent
+    LoginComponent,
+    AddUsuarioComponent
   ],
   imports: [
     BrowserModule,
