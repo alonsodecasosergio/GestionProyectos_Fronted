@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Proyecto } from 'src/app/Models/proyecto';
+import { Usuario } from 'src/app/Models/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
@@ -19,18 +21,29 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.service.checked(this.email, this.password).subscribe(
+    const proyecto = new Proyecto("", new Date(), new Date());
+    const usuario = new Usuario(proyecto,'','', this.email, this.password);
+
+    this.service.checked(usuario).subscribe(
       data => {
-        this.toastr.success('Usuario correcto', 'Correcto', {
-          timeOut: 3000
-        });
-        this.router.navigate(['/']);
+        this.email = data.email;
+        if(this.email == ""){
+          this.toastr.error('Usuario incorrecto', 'Error', {
+            timeOut: 3000
+          });
+          this.router.navigate(['/login']);
+        }else{
+          this.toastr.success('Usuario correcto', 'Correcto', {
+            timeOut: 3000
+          });
+          this.router.navigate(['/']);
+        }
     },
     err => {
-      this.toastr.error('Usuario incorrecto', 'Error', {
+      this.toastr.error('El email debe tener formato email', 'Error', {
         timeOut: 3000
       });
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     }
     );
     
