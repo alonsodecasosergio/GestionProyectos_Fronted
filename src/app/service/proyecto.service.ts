@@ -23,6 +23,11 @@ export class ProyectoService {
     return this.httpClient.get<Proyecto>(this.URL + `get/${id}`);
   }
 
+  public getProjectFromSession(email: string): Observable<Proyecto>{
+
+    return this.httpClient.get<Proyecto>(this.URL + `proyectFromSession/${email}`);
+  }
+
   public add(proyecto: Proyecto): Observable<any>{
     return this.httpClient.post<any>(this.URL + 'add', proyecto);
   }

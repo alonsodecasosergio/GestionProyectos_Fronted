@@ -36,7 +36,9 @@ export class LoginComponent implements OnInit {
           this.toastr.success('Usuario correcto', 'Correcto', {
             timeOut: 3000
           });
-          this.router.navigate(['/']);
+          
+          this.service.setToken(usuario.email);
+          this.router.navigate(['/myProyect']);
         }
     },
     err => {

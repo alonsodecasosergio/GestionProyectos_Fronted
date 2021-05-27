@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsuarioService } from './service/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularGestionProyectos';
+
+  constructor(private service: UsuarioService, private router: Router) { }
+
+  logOut(){
+    this.service.deleteToken();
+    this.router.navigate(['/login']);
+  }
 }

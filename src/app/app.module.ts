@@ -21,6 +21,7 @@ import { VerTareaComponent } from './Tarea/VerTarea/ver-tarea.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './Usuarios/Login/login.component';
 import { AddUsuarioComponent } from './Usuarios/AddUsuario/add-usuario.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { AddUsuarioComponent } from './Usuarios/AddUsuario/add-usuario.component
     FormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
