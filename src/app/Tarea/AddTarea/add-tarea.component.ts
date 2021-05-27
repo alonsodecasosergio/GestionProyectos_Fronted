@@ -25,8 +25,18 @@ export class AddTareaComponent implements OnInit {
   constructor(private serviceUsuario: UsuarioService, private serviceProject: ProyectoService , private service: TareaService, private toastr: ToastrService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.obtenerProyecto();
-    this.obtenerUsuario();
+
+    if(this.serviceUsuario.getToken() != ''){
+      this.obtenerProyecto();
+      this.obtenerUsuario();
+
+    }else{
+      this.toastr.error('Es necesario estar logeado para añadir una tarea', 'No esta logueado', {
+        timeOut: 3000
+      });
+      this.router.navigate(['/login']);
+    }
+    
   }
 
   onCreate(): void {

@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="media-right text-right d-none d-md-block">
-                <p class="fs-14 text-fade mb-12"><i class="far fa-user"></i> {{tarea.usuario.nombre}}</p>
+                <p class="fs-14 text-fade mb-12"><i class="far fa-user"></i> {{tarea.usuario.nombre}} {{tarea.usuario.apellidos}}</p>
             </div>
         </div>
         <footer class="card-footer flexbox align-items-center">
@@ -50,7 +50,7 @@
                 <span>{{tarea.fechaFin | date}}</span>
             </div>
             <div class="card-hover-show">
-                <a class="btn btn-xs fs-10 btn-bold btn-outline-info mr-2" ><i class="fas fa-marker"></i></a>
+                <a class="btn btn-xs fs-10 btn-bold btn-outline-info mr-2" *ngIf="emailUsuarioConectado == tarea.usuario.email"><i class="fas fa-marker"></i></a>
                 <a class="btn btn-xs fs-10 btn-bold btn-outline-primary mr-2"><i class="far fa-eye"></i></a>
                 <a class="btn btn-xs fs-10 btn-bold btn-outline-danger" *ngIf="emailUsuarioConectado == tarea.usuario.email"><i class="far fa-trash-alt"></i></a>
             </div>
