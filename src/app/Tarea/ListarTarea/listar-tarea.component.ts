@@ -16,12 +16,14 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class ListarTareaComponent implements OnInit {
 
   tareas: Tarea[] = [];
+  emailUsuarioConectado: string='';
   proyecto: Proyecto = new Proyecto("", new Date(), new Date());
 
   constructor(private serviceUsuario: UsuarioService, private servicioProyecto: ProyectoService, private service: TareaService, private toastr: ToastrService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargarHomeworks();
+    this.emailUsuarioConectado = this.serviceUsuario.getToken();
   }
 
 

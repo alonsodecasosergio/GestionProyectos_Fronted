@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AppComponent } from 'src/app/app.component';
 import { Proyecto } from 'src/app/Models/proyecto';
 import { Usuario } from 'src/app/Models/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   email: string='';
   password: string='';
 
-  constructor(private service: UsuarioService, private toastr: ToastrService, private router: Router) { }
+  constructor(private inicio: AppComponent, private service: UsuarioService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
           });
           
           this.service.setToken(usuario.email);
+          this.inicio.acceder();
           this.router.navigate(['/myProyect']);
         }
     },

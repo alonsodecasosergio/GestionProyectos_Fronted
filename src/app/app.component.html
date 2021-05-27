@@ -15,10 +15,10 @@
         <a class="nav-link" data-toggle="modal" routerLink="/myProyect"><i class="fas fa-project-diagram"></i> Mi Proyecto</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" routerLink="/login"><i class="fas fa-sign-in-alt"></i> Acceder</a>
+        <a class="nav-link" data-toggle="modal" routerLink="/login" *ngIf="emailUsuarioConectado == ''"><i class="fas fa-sign-in-alt"></i> Acceder</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" (click)="logOut()"><i class="fas fa-sign-out-alt"></i> Salir</a>
+        <a class="nav-link" data-toggle="modal" (click)="logOut()" *ngIf="emailUsuarioConectado != ''"><i class="fas fa-sign-out-alt"></i> Salir</a>
       </li>
     </ul>
   </div>
