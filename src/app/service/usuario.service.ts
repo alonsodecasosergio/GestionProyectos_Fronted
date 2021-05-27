@@ -17,6 +17,10 @@ export class UsuarioService {
     return this.httpClient.post<any>(this.URL + 'register', usuario);
   }
 
+  public listUsuarios(): Observable<Usuario[]>{
+    return this.httpClient.get<Usuario[]>(this.URL + '/all');
+  }
+
   public checked(usuario: Usuario): Observable<Usuario>{
     return this.httpClient.post<any>(this.URL + 'checked', usuario);
   }
