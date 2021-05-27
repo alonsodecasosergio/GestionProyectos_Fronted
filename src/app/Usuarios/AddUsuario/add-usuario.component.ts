@@ -73,6 +73,6 @@ export class AddUsuarioComponent implements OnInit {
     // Pasamos el valor seleccionado a la variable verSeleccion
     this.idProyecto = this.seleccionado;
     console.log(this.idProyecto);
-}
+  }
 
 }

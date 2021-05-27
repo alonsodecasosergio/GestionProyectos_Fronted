@@ -23,7 +23,6 @@ export class VerProyectoComponent implements OnInit {
 
   cargarProyecto(){
     
-
     if(this.serviceUsuario.getToken() != ""){
       this.service.getProjectFromSession(this.serviceUsuario.getToken()).subscribe(
         data => {

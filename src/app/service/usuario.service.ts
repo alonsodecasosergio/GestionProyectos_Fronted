@@ -21,6 +21,10 @@ export class UsuarioService {
     return this.httpClient.post<any>(this.URL + 'checked', usuario);
   }
 
+  public getFromEmail(email: string): Observable<Usuario>{
+    return this.httpClient.get<any>(this.URL + `get/${email}`);
+  }
+
   public setToken(usuario: string) {
     this.cookies.set("usuario", usuario);
   }
