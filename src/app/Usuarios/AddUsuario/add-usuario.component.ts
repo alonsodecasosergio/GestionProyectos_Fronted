@@ -57,9 +57,9 @@ export class AddUsuarioComponent implements OnInit {
         console.log(err);
       }
     )
+
     //CREACION DEL USUARIO CON LOS VALORES DEL FORMULARIO
     const usuario = new Usuario(this.proyecto, this.nombre, this.apellidos, this.email, this.password);
-
     //AÑADIDO DEL USUAIRO AL SERVICIO
     this.service.add(usuario).subscribe(
       data => {
@@ -74,8 +74,7 @@ export class AddUsuarioComponent implements OnInit {
         });
         this.router.navigate(['registrar']);
       }
-    );
-    
+    ); 
   }
 
   //GUARDA EL ID DEL PROYECTO CADA VEZ QUE SE SELECCIONA
