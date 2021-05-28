@@ -7,12 +7,9 @@
         <div class="row justify-content-center ">
             <div class="col-xl-11">
                 <div class="widget head-profile has-shadow">
-                    <div class="row justify-content-center align-items-center text-center">
+                    <div class="row justify-content-center align-items-center text-center p-3">
                         <div class="col-2">
-                            <div class="infos"></div>
-                            <div class="location">
-                                <span>Tareas del proyecto</span>
-                            </div>
+                            <a class="btn btn-outline-dark" (click)="cargarHomeworks()"><i class="la la-user-plus"></i>Todas tareas</a>
                         </div>
                         <div class="col-6">
                             <h2>{{proyecto.nombre}}</h2>
@@ -21,7 +18,7 @@
                                 <a class="btn btn-outline-success" routerLink="/addHomework/{{proyecto.id}}"><i class="la la-user-plus"></i>Añadir tarea</a>
                         </div>
                         <div class="col-2">
-                            <a class="btn btn-outline-dark" onclick="myHomework()"><i class="la la-user-plus"></i>Mis tareas</a>
+                            <a class="btn btn-outline-dark" (click)="myHomework()"><i class="la la-user-plus"></i>Mis tareas</a>
                     </div>
                     </div>
                 </div>

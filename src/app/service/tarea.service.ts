@@ -26,12 +26,13 @@ export class TareaService {
   }
 
   /**
-   * MOSTRADO DE LAS TAREAS DEL USUARIO CONECTADO DE ESE PROYECTO
-   * @param id DEL PROYECTO
+   * LAS TAREAS DE UN PROYECTO DEL USUAIRO CONECTADO
+   * @param email EMAIL DEL USUARIO CONECTADO EN ESE MOMENTO
+   * @param id ID DEL PROYECTO DEL CUAL SE QUIERE VER LAS TAREAS DE ESE USUARIO
    * @returns 
    */
-  public myHomework(id: number): Observable<Tarea[]> {
-    return this.httpClient.get<Tarea[]>(this.URL + `myHomework/${id}`);
+  public myHomework(email: string, id: number): Observable<Tarea[]> {
+    return this.httpClient.get<Tarea[]>(this.URL + `myHomework/${email}/${id}`);
   }
 
   /**

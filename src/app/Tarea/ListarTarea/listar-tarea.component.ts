@@ -76,15 +76,24 @@ export class ListarTareaComponent implements OnInit {
         console.log(err);
       }
     )
-    //RECUPERA LAS TAREAS SEGUN EL ID DEL PROYECTO
-    this.service.myHomework(id).subscribe(
-      data => {
-        this.tareas = data;
-      },
-      err => {
-        console.log(err);
+    //RECUPERA LAS TAREAS SEGUN EL EMAIL DEL USUARIO CONECTADO
+
+      if(this.serviceUsuario.getToken() != ''){
+
+        this.service.myHomework(this.serviceUsuario.getToken(), id).subscribe(
+          data => {
+            this.tareas = data;
+          },
+          err => {
+            console.log(err);
+          }
+        )
+      }else{
+        this.toastr.error('Debe estar conectado para ver sus tareas', 'Error', {
+          timeOut: 3000
+        });
+        this.router.navigate(['/login']);
       }
-    )
   }
 
   /**
