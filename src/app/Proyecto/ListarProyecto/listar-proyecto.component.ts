@@ -12,7 +12,8 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
 export class ListarProyectoComponent implements OnInit {
 
   proyectos: Proyecto[] = [];
-  fechaFin = new Date();
+  fechaFinDe = new Date();
+  fechaFinHasta = new Date();
   constructor(private service: ProyectoService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
@@ -51,7 +52,10 @@ export class ListarProyectoComponent implements OnInit {
 
   filtrado(){
     this.proyectos = this.proyectos.filter(
-      proyecto => proyecto.fechaFin < this.fechaFin
+      proyecto => proyecto.fechaFin > this.fechaFinDe
+    );
+    this.proyectos = this.proyectos.filter(
+      proyecto => proyecto.fechaFin < this.fechaFinHasta
     );
   }
 

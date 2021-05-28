@@ -2,8 +2,10 @@
 <div class="container profile-page">
     <form (ngSubmit)="filtrado()" novalidate #f="ngForm">
         <div class="form-group">
-            <label class="mr-4" for="fechaInicio">Fecha fin hasta</label>
-            <input class="mr-4" type="date" id="fechaFin" name="fechaFin" [(ngModel)]="fechaFin">
+            <label class="mr-2" for="fechaInicio">Fecha fin de</label>
+            <input class="mr-2" type="date" id="fechaFinDe" name="fechaFinDe" [(ngModel)]="fechaFinDe">
+            <label class="mr-2" for="fechaInicio">hasta</label>
+            <input class="mr-2" type="date" id="fechaFinHasta" name="fechaFinHasta" [(ngModel)]="fechaFinHasta">
         <button class="btn btn-outline-success" [disabled]="!f.valid">Buscar</button>
         </div>
     </form>
