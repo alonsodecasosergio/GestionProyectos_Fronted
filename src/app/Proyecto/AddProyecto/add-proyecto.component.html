@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-4 mx-auto">
-            <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+            <form (ngSubmit)="onCreate()">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombre" required>
@@ -14,7 +14,7 @@
                     <label for="fechaFin">Fecha Fin</label>
                     <input type="date" class="form-control" id="fechaFin" name="fechaFin" [(ngModel)]="fechaFin" required>
                 </div>
-                <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">Crear</button>
+                <button class="btn btn-outline-success btn-block">Crear</button>
             </form>
         </div>
     </div>

@@ -12,6 +12,7 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
 export class ListarProyectoComponent implements OnInit {
 
   proyectos: Proyecto[] = [];
+  fechaFin = new Date();
   constructor(private service: ProyectoService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class ListarProyectoComponent implements OnInit {
     )
   }
 
+  
   borrar(id: number) {
     this.service.delete(id).subscribe(
       data => {
@@ -44,6 +46,12 @@ export class ListarProyectoComponent implements OnInit {
           timeOut: 3000
         });
       }
+    );
+  }
+
+  filtrado(){
+    this.proyectos = this.proyectos.filter(
+      proyecto => proyecto.fechaFin < this.fechaFin
     );
   }
 

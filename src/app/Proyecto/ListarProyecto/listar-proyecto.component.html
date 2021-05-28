@@ -1,5 +1,12 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container profile-page">
+    <form (ngSubmit)="filtrado()" novalidate #f="ngForm">
+        <div class="form-group">
+            <label class="mr-4" for="fechaInicio">Fecha fin hasta</label>
+            <input class="mr-4" type="date" id="fechaFin" name="fechaFin" [(ngModel)]="fechaFin">
+        <button class="btn btn-outline-success" [disabled]="!f.valid">Buscar</button>
+        </div>
+    </form>
     <div class="row">
         <div *ngFor="let proyecto of proyectos" class="col-xl-6 col-lg-7 col-md-12">
             <div class="card profile-header">

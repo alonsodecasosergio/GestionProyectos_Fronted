@@ -39,8 +39,4 @@ export class ProyectoService {
   public delete(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.URL + `del/${id}`);
   }
-
-  public noEnviaNada(proyecto: Proyecto): Observable<any>{
-    return this.httpClient.post<any>(this.URL + 'add', {});
-  }
 }
