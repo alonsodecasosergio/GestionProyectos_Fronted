@@ -1,21 +1,24 @@
+<!--
+  FORMULARIO DE LOGIN
+-->
 <div class="login">
-    <form class="custom-form" method="post">
-      <h1>Acceder</h1>
-      <input
-        type="email"
-        [(ngModel)]="email"
-        name="email"
-        placeholder="Email"
-        required="required"
-      />
-      <input
-        type="password"
-        [(ngModel)]="password"
-        name="password"
-        placeholder="Password"
-        required="required"
-      />
-      <button type="submit" (click)="login()">Log in</button>
-      <span class="text-center">¿No tienes cuenta? <a routerLink="/registrar">Registrate</a></span>
-    </form>
-  </div>
+  <form class="custom-form" method="post">
+    <h1>Acceder</h1>
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      placeholder="Email"
+      required="required"
+    />
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      placeholder="Password"
+      required="required"
+    />
+    <button type="submit" (click)="login()">Log in</button>
+    <span class="text-center">¿No tienes cuenta? <a routerLink="/registrar">Registrate</a></span>
+  </form>
+</div>

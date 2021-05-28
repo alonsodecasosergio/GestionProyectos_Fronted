@@ -8,6 +8,9 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
 import { TareaService } from 'src/app/service/tarea.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
+/**
+ * COMPONENTE EL CUAL LISTA LAS TAREAS DE UN PROYECTO
+ */
 @Component({
   selector: 'app-listar-tarea',
   templateUrl: './listar-tarea.component.html',
@@ -15,21 +18,29 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 })
 export class ListarTareaComponent implements OnInit {
 
+  //ATRIBUTOS
   tareas: Tarea[] = [];
   emailUsuarioConectado: string='';
   proyecto: Proyecto = new Proyecto("", new Date(), new Date());
 
   constructor(private serviceUsuario: UsuarioService, private servicioProyecto: ProyectoService, private service: TareaService, private toastr: ToastrService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
+  /**
+   * CARGA LAS TAREAS Y GUARDA EN UNA VARIABLE EL EMAIL DEL USUARIO CONECTADO
+   */
   ngOnInit(): void {
     this.cargarHomeworks();
     this.emailUsuarioConectado = this.serviceUsuario.getToken();
   }
 
-
+  /**
+   * MUESTRA TODAS LAS TAREAS SEGUN EL ID DEL PROYECTO SELECCIONADO
+   */
   cargarHomeworks(): void{
+    //OBTIENE EL ID DEL PROYECTO
     const id = this.activatedRoute.snapshot.params.id;
 
+    //RECUPERA EL PROYECTO SEGUN EL ID
     this.servicioProyecto.getProject(id).subscribe(
       data => {
         this.proyecto = data;
@@ -38,7 +49,7 @@ export class ListarTareaComponent implements OnInit {
         console.log(err);
       }
     )
-
+    //RECUPERA LAS TAREAS SEGUN EL ID DEL PROYECTO
     this.service.listHomeworks(id).subscribe(
       data => {
         this.tareas = data;
@@ -49,6 +60,37 @@ export class ListarTareaComponent implements OnInit {
     )
   }
 
+  /**
+   * MUESTRA LAS TAREAS DEL USUAIRO CONECTADO
+   */
+  myHomework(): void{
+    //OBTIENE EL ID DEL PROYECTO
+    const id = this.activatedRoute.snapshot.params.id;
+
+    //RECUPERA EL PROYECTO SEGUN EL ID
+    this.servicioProyecto.getProject(id).subscribe(
+      data => {
+        this.proyecto = data;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+    //RECUPERA LAS TAREAS SEGUN EL ID DEL PROYECTO
+    this.service.myHomework(id).subscribe(
+      data => {
+        this.tareas = data;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  /**
+   * BORRA LA TAREA
+   * @param id ID DE LA TAREA A BORRAR
+   */
   borrar(id: number) {
     this.service.delete(id).subscribe(
       data => {

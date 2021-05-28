@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { EditUsuarioComponent } from './Usuarios/EditUsuario/edit-usuario.component';
 import { AddProyectoComponent } from './Proyecto/AddProyecto/add-proyecto.component';
 import { EditProyectoComponent } from './Proyecto/EditProyecto/edit-proyecto.component';
 import { ListarProyectoComponent } from './Proyecto/ListarProyecto/listar-proyecto.component';
@@ -25,7 +24,6 @@ import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
-    EditUsuarioComponent,
     AddProyectoComponent,
     EditProyectoComponent,
     ListarProyectoComponent,

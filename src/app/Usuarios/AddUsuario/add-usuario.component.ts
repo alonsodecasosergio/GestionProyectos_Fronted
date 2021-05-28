@@ -6,6 +6,9 @@ import { Usuario } from 'src/app/Models/usuario';
 import { ProyectoService } from 'src/app/service/proyecto.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
+/**
+ * COMPONENETE PARA REGISTRAR UN USUARIO
+ */
 @Component({
   selector: 'app-add-usuario',
   templateUrl: './add-usuario.component.html',
@@ -13,6 +16,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 })
 export class AddUsuarioComponent implements OnInit {
 
+  //ATRIBUTOS
   email: string='';
   password: string='';
   confirmPassword: string='';
@@ -25,7 +29,7 @@ export class AddUsuarioComponent implements OnInit {
   
 
   constructor(private serviceproyecto: ProyectoService, private service: UsuarioService, private toastr: ToastrService, private router: Router) { 
-    
+    //SE CARGAR TODOS LOS PROYECTOS PARA QUE APAREZCAN EN UN DESPLEGABLE
     this.serviceproyecto.listProjects().subscribe(
       data => {
         this.proyectos = data;
@@ -39,8 +43,12 @@ export class AddUsuarioComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * REGISTRA UN NUEVO USUARIO
+   */
   register() {
 
+    //SE GUARDA EL PROYECTO SELECCIONADO SEGUN SU ID
     this.serviceproyecto.getProject(this.idProyecto).subscribe(
       data => {
         this.proyecto = data;
@@ -49,9 +57,10 @@ export class AddUsuarioComponent implements OnInit {
         console.log(err);
       }
     )
-    
+    //CREACION DEL USUARIO CON LOS VALORES DEL FORMULARIO
     const usuario = new Usuario(this.proyecto, this.nombre, this.apellidos, this.email, this.password);
 
+    //AÑADIDO DEL USUAIRO AL SERVICIO
     this.service.add(usuario).subscribe(
       data => {
           this.toastr.success('Usuario creado correctamente', 'Correcto', {
@@ -69,8 +78,8 @@ export class AddUsuarioComponent implements OnInit {
     
   }
 
+  //GUARDA EL ID DEL PROYECTO CADA VEZ QUE SE SELECCIONA
   capturar() {
-    // Pasamos el valor seleccionado a la variable verSeleccion
     this.idProyecto = this.seleccionado;
     console.log(this.idProyecto);
   }

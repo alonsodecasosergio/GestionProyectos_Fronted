@@ -15,6 +15,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 })
 export class AddTareaComponent implements OnInit {
 
+  //ATRIBUTOS
   nombre: string='';
   descripcion: string='';
   fechaInicio = new Date();
@@ -24,13 +25,19 @@ export class AddTareaComponent implements OnInit {
 
   constructor(private serviceUsuario: UsuarioService, private serviceProject: ProyectoService , private service: TareaService, private toastr: ToastrService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
+  /**
+   * COMPRUEBA SI EL USUARIO ESTA LOGUEADO PARA QUE NO PRUEDA AÑADIR TAREAS SI NO ESTA LOQUEADO
+   */
   ngOnInit(): void {
 
+    //SI EL TOKEN DE USUAIRO ES VACIO SIGNIFICA QUE NO HAY NADIE CONECTADO
     if(this.serviceUsuario.getToken() != ''){
       this.obtenerProyecto();
       this.obtenerUsuario();
 
     }else{
+      
+      //SI NO HAY NADIE CONECTADO SE INFORMA
       this.toastr.error('Es necesario estar logeado para añadir una tarea', 'No esta logueado', {
         timeOut: 3000
       });
@@ -39,29 +46,43 @@ export class AddTareaComponent implements OnInit {
     
   }
 
+  /**
+   * CREACION DE UNA NUEVA TAREA
+   */
   onCreate(): void {
 
+    //TAREA CON LOS VALORES DEL FORMULARIO
     const tarea = new Tarea(this.nombre, this.descripcion, this.fechaInicio, this.fechaFin, this.proyecto, this.usuario);
 
+    //ENVIA LA TAREA AL SERVICIO
     this.service.add(tarea).subscribe(
       data => {
+        //SI EL RESULTADO ES EL ESPERADO SE INFORMA AL USUARIO
         this.toastr.success('Tarea añadida', 'Correcto', {
           timeOut: 3000
         });
+        //SE VUELVE AL LISTADO DE TAREAS
         this.router.navigate(['/homework/'+tarea.proyecto?.id]);
     },
     err => {
+      // SI SUCEDE ALGUN ERROR SE INFORMA AL USUARIO
       this.toastr.error('Error al crear la tarea', 'Error', {
         timeOut: 3000
       });
+      //SE VUELVE A LA LISTA DE TAREAS
       this.router.navigate(['/homework/'+tarea.proyecto?.id]);
     }
     );
-    
   }
 
+  /**
+   * RECUPERA EL PROYECTO SEGUN EL ID PASADO
+   */
   obtenerProyecto(){
+    //OBTIENE EL ID PASADO
     const id = this.activatedRoute.snapshot.params.id;
+
+    //RECUPERA EL PROYECTO SEGUN EL ID Y LO GUARDA EN UNA VARIABLE
     this.serviceProject.getProject(id).subscribe(
       data => {
         this.proyecto = data;
@@ -70,8 +91,12 @@ export class AddTareaComponent implements OnInit {
     );
   }
 
+  /**
+   * OBTIENE EL USUARIO SEGUN SU EMAIL CONECTADO
+   */
   obtenerUsuario(){
 
+    //RECUPERA EL USUARIO A PARTIR DEL EMAIL GUARDADO EN EL TOKEN DE CONEXION
     this.serviceUsuario.getFromEmail(this.serviceUsuario.getToken()).subscribe(
       data => {
         this.usuario = data;

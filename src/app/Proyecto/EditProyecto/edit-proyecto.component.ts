@@ -10,19 +10,27 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
   styleUrls: ['./edit-proyecto.component.css']
 })
 export class EditProyectoComponent implements OnInit {
-
+ 
+  //CREACION DE UN OBJETO DE PROYECTO EL CUAL SE RELLENARA CON LOS DATOS DEL PROYECTO A EDITAR
  proyecto: Proyecto = new Proyecto("", new Date(), new Date());
 
+ //CONSTRUCTOR
   constructor(private service: ProyectoService, private toastr: ToastrService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
+  /**
+   * CARGA LOS DATOS DEL PROYECTO A EDITAR
+   */
   ngOnInit(): void {
 
+    //AÑADIDO DE DATOS AL OBJETO CREADO ANTERIORMENTE A PARTIR DEL ID DEL PROYECTO
     const id = this.activatedRoute.snapshot.params.id;
     this.service.getProject(id).subscribe(
       data => {
+        //SI EL RESULTADO ES CORRECTO SE ALMACENAN LOS DATOS
         this.proyecto = data;
       },
       err => {
+        //SI EL RESULTADO NO ES CORRECTO SE INFORMA AL USUARIO
         this.toastr.error('Error al obtener el proyecto', 'Error', {
           timeOut: 3000
         });
@@ -31,22 +39,34 @@ export class EditProyectoComponent implements OnInit {
     );
   }
 
+  /**
+   * METODO EL CUAL EDITA EL PROYECTO SELECCIONADO
+   */
   onUpdate(): void {
+
+    //RECUPERACION EL ID DEL PROYECTO MEDIANTE PARAMETRO
     const id = this.activatedRoute.snapshot.params.id;
+
+    //ENVIO DEL OBJETO ACTUALIZADO AL SERVICIO
     this.service.update(id, this.proyecto).subscribe(
       data => {
-          this.toastr.success('Proyecto editado', 'Correcto', {
-            timeOut: 3000
-          });
-          this.router.navigate(['/']);
+
+        //SI EL RESULTADO ES EL CORRECTO SE INFORMA AL USUARIO
+        this.toastr.success('Proyecto editado', 'Correcto', {
+          timeOut: 3000
+        });
+
+        //SE VUELVE AL LISTADO INICIAL
+        this.router.navigate(['/']);
       },
       err => {
+        //SI SUCEDE ALGUN ERROR SE INFORMA AL USUARIO
         this.toastr.error('Error al editar el proyecto', 'Error', {
           timeOut: 3000
         });
+        //SE VUELVE AL LISTADO INICIAL
         this.router.navigate(['/']);
       }
     );
   }
-
 }
