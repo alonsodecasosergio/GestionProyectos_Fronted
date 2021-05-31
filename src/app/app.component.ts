@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { UsuarioService } from './service/usuario.service';
 
 @Component({
@@ -10,8 +11,11 @@ import { UsuarioService } from './service/usuario.service';
 export class AppComponent {
   title = 'AngularGestionProyectos';
   emailUsuarioConectado: string='';
+  entorno: string='';
 
-  constructor(private service: UsuarioService, private router: Router) {  }
+  constructor(private service: UsuarioService, private router: Router) {  
+    this.entorno = environment.entorno;
+  }
 
   /**
    * METODO EL CUAL CIERRA LA SESION
