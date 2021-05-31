@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   //ATRIBUTOS
   email: string='';
   password: string='';
+  
 
   constructor(private inicio: AppComponent, private service: UsuarioService, private toastr: ToastrService, private router: Router) { }
 

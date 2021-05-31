@@ -16,21 +16,21 @@
 
     <div>
       <mat-form-field>
-        <input matInput type="email" [(ngModel)]="email" name="email" placeholder="Email" required="required" />
+        <input matInput type='email' [(ngModel)]="email" name="email" placeholder="Email" ngModel required/>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
+        <mat-label>Introduce la contraseña</mat-label>
         <input [(ngModel)]="password" name="password" matInput [type]="hide ? 'password' : 'text'" required="required">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ver contraseña'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
+        <mat-label>Introduce la contraseña</mat-label>
         <input [(ngModel)]="confirmPassword" name="confirmPassword" matInput [type]="hide ? 'password' : 'text'" required="required">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ver contraseña'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
