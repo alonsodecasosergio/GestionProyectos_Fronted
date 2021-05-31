@@ -20,6 +20,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './Usuarios/Login/login.component';
 import { AddUsuarioComponent } from './Usuarios/AddUsuario/add-usuario.component';
 import { CookieService } from 'ngx-cookie-service';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+
+
 
 @NgModule({
   declarations: [
@@ -41,7 +45,9 @@ import { CookieService } from 'ngx-cookie-service';
     ToastrModule.forRoot(),
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
