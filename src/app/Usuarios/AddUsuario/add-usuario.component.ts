@@ -6,6 +6,8 @@ import { Usuario } from 'src/app/Models/usuario';
 import { ProyectoService } from 'src/app/service/proyecto.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
+
+
 /**
  * COMPONENETE PARA REGISTRAR UN USUARIO
  */
@@ -15,6 +17,8 @@ import { UsuarioService } from 'src/app/service/usuario.service';
   styleUrls: ['./add-usuario.component.css']
 })
 export class AddUsuarioComponent implements OnInit {
+
+  hide = true;
 
   //ATRIBUTOS
   email: string='';

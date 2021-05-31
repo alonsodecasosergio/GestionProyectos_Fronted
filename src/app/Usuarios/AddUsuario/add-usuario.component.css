@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
   }
@@ -24,15 +25,16 @@
   }
   .custom-form input {
     display: block;
-    margin: 2rem 0;
     width: 100%;
     border-radius: 0.5rem;
-    padding: 1rem;
     border: none;
+    /*
+    margin: 2rem 0;
+    padding: 1rem;
     box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px
         rgba(0, 0, 0, 0.1);
     border: 0 none;
-    background: #ebf5fc;
+    background: #ebf5fc;*/
   }
   .custom-form select {
     display: block;
@@ -60,4 +62,22 @@
     border-radius: 1.5rem;
     box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
     cursor: pointer;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+
+  .mat-form-field{
+    margin-left: 1em;
   }

@@ -2,46 +2,43 @@
   FORMULARIO DE REGISTRO DE USUAIROS
 -->
 <div class="Registrarse">
-    <form class="custom-form" method="post">
-      <h1>Register</h1>
-      <input
-        type="text"
-        [(ngModel)]="nombre"
-        name="nombre"
-        placeholder="Nombre"
-        required="required"
-      />
-      <input
-        type="text"
-        [(ngModel)]="apellidos"
-        name="apellidos"
-        placeholder="Apellidos"
-        required="required"
-      />
-      <select name="idProyecto" [(ngModel)]="seleccionado" (change)="capturar()" required>
-          <option *ngFor="let proyecto of proyectos" [value]="proyecto.id">{{proyecto.nombre}}</option>
-      </select>
-      <input
-        type="email"
-        [(ngModel)]="email"
-        name="email"
-        placeholder="Email"
-        required="required"
-      />
-      <input
-        type="password"
-        [(ngModel)]="password"
-        name="password"
-        placeholder="Contraseña"
-        required="required"
-      />
-      <input
-        type="password"
-        [(ngModel)]="confirmPassword"
-        name="confirmPassword"
-        placeholder="Repite la contraseña"
-        required="required"
-      />
-      <button type="submit" (click)="register()">Register</button>
-    </form>
+  <form class="custom-form" method="post" novalidate #f="ngForm">
+    <h1 class="mb-3">Register</h1>
+
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="nombre" name="nombre" placeholder="Nombre" required="required" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="apellidos" name="apellidos" placeholder="Apellidos"
+        required="required" />
+    </mat-form-field>
+
+    <div>
+      <mat-form-field>
+        <input matInput type="email" [(ngModel)]="email" name="email" placeholder="Email" required="required" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input [(ngModel)]="password" name="password" matInput [type]="hide ? 'password' : 'text'" required="required">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input [(ngModel)]="confirmPassword" name="confirmPassword" matInput [type]="hide ? 'password' : 'text'" required="required">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+  </div>
+    <select name="idProyecto" [(ngModel)]="seleccionado" (change)="capturar()" required>
+      <option *ngFor="let proyecto of proyectos" [value]="proyecto.id">{{proyecto.nombre}}</option>
+    </select>
+
+    <button type="submit" (click)="register()" [disabled]="!f.valid">Register</button>
+  </form>
 </div>
