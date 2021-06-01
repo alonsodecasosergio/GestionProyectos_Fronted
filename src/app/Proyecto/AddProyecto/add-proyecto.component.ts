@@ -42,15 +42,21 @@ export class AddProyectoComponent implements OnInit {
         
         console.log(proyecto);
 
-          //SI LA RESPUESTA ES LA CORRECTA INFORMA AL USUARIO
+        //SEGUN EL CODIGO DE ERROR SE MUESTRA UN MENSAJE U OTRO
+        if(proyecto.codigo >= 200 && proyecto.codigo < 300 ){          
           this.toastr.success(proyecto.mensaje, 'Correcto', {
             timeOut: 3000
           });
-          this.router.navigate(['/']);
+        }else{
+          this.toastr.error(proyecto.mensaje, 'Error ' + proyecto.codigo, {
+            timeOut: 3000
+          });
+        }
+        this.router.navigate(['/']);
       },
       err => {
         //SI SUCEDE UN ERROR INFORMA AL USUARIO
-        this.toastr.error('Error al crear el proyecto', 'Error', {
+        this.toastr.error('Error inesperado', 'Error', {
           timeOut: 3000
         });
         this.router.navigate(['/']);
