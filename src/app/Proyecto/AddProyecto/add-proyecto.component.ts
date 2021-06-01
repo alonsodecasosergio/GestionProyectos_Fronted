@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Proyecto } from 'src/app/Models/proyecto';
+import { ProyectoDTO } from 'src/app/Models/proyectoDTO';
 import { ProyectoService } from 'src/app/service/proyecto.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class AddProyectoComponent implements OnInit {
   nombre: string='';
   fechaInicio = new Date();
   fechaFin = new Date();
+  
 
   //CONSTRUCTOR
   constructor(private service: ProyectoService, private toastr: ToastrService, private router: Router) { }
@@ -31,11 +33,17 @@ export class AddProyectoComponent implements OnInit {
     //CREA UN PROYECTO RECOGIENDO LOS VALORES DEL FORMULARIO
     const project = new Proyecto(this.nombre, this.fechaInicio, this.fechaFin);
 
+    let proyecto = new ProyectoDTO(0, '', project);
+
     //SE ENVIA EL OBJETO CREADO AL SERVIDOR
     this.service.add(project).subscribe(
       data => {
+        proyecto = data;
+        
+        console.log(proyecto);
+
           //SI LA RESPUESTA ES LA CORRECTA INFORMA AL USUARIO
-          this.toastr.success('Proyecto añadido', 'Correcto', {
+          this.toastr.success(proyecto.mensaje, 'Correcto', {
             timeOut: 3000
           });
           this.router.navigate(['/']);

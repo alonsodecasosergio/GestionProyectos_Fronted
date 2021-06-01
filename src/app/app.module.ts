@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -23,7 +23,6 @@ import { CookieService } from 'ngx-cookie-service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -47,11 +46,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
     HttpClientModule,
-    FormsModule,
     NgbModule,
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [CookieService],
