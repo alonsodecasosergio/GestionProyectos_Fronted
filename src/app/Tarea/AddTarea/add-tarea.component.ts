@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Proyecto } from 'src/app/Models/proyecto';
 import { Tarea } from 'src/app/Models/tarea';
+import { TareaDTO } from 'src/app/Models/tareaDTO';
 import { Usuario } from 'src/app/Models/usuario';
 import { ProyectoService } from 'src/app/service/proyecto.service';
 import { TareaService } from 'src/app/service/tarea.service';
@@ -54,24 +55,29 @@ export class AddTareaComponent implements OnInit {
     //TAREA CON LOS VALORES DEL FORMULARIO
     const tarea = new Tarea(this.nombre, this.descripcion, this.fechaInicio, this.fechaFin, this.proyecto, this.usuario);
 
+    let tareaDTO = new TareaDTO(0,'', tarea);
+
     //ENVIA LA TAREA AL SERVICIO
     this.service.add(tarea).subscribe(
       data => {
+
+        tareaDTO = data;
+
+        console.log(tareaDTO);
+
         //SI EL RESULTADO ES EL ESPERADO SE INFORMA AL USUARIO
-        this.toastr.success('Tarea añadida', 'Correcto', {
-          timeOut: 3000
-        });
+        if(tareaDTO.codigo >= 200 && tareaDTO.codigo < 300 ){          
+          this.toastr.success(tareaDTO.mensaje, 'Correcto', {
+            timeOut: 3000
+          });
+        }else{
+          this.toastr.error(tareaDTO.mensaje, 'Error ' + tareaDTO.codigo, {
+            timeOut: 3000
+          });
+        }
         //SE VUELVE AL LISTADO DE TAREAS
         this.router.navigate(['/homework/'+tarea.proyecto?.id]);
-    },
-    err => {
-      // SI SUCEDE ALGUN ERROR SE INFORMA AL USUARIO
-      this.toastr.error('Error al crear la tarea', 'Error', {
-        timeOut: 3000
-      });
-      //SE VUELVE A LA LISTA DE TAREAS
-      this.router.navigate(['/homework/'+tarea.proyecto?.id]);
-    }
+      }
     );
   }
 
@@ -86,7 +92,6 @@ export class AddTareaComponent implements OnInit {
     this.serviceProject.getProject(id).subscribe(
       data => {
         this.proyecto = data;
-        console.log("Proyecto " + this.proyecto.id);
       }
     );
   }
@@ -102,7 +107,6 @@ export class AddTareaComponent implements OnInit {
         this.usuario = data;
       }
     );
-    console.log("Usuario " + this.usuario.email);
   }
 
 }

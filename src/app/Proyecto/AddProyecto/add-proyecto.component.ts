@@ -53,13 +53,6 @@ export class AddProyectoComponent implements OnInit {
           });
         }
         this.router.navigate(['/']);
-      },
-      err => {
-        //SI SUCEDE UN ERROR INFORMA AL USUARIO
-        this.toastr.error('Error inesperado', 'Error', {
-          timeOut: 3000
-        });
-        this.router.navigate(['/']);
       }
     );
   }

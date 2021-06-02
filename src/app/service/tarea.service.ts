@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Tarea } from '../Models/tarea';
+import { TareaDTO } from '../Models/tareaDTO';
 
 /**
  * SERVICIO DEL MODELO DE TAREA
@@ -58,7 +59,7 @@ export class TareaService {
    * @param id ID DE LA TAREA LA CUAL SE QUIERE BORRAR
    * @returns 
    */
-  public delete(id: number): Observable<Tarea> {
+  public delete(id: number): Observable<TareaDTO> {
     return this.httpClient.delete<any>(this.URL + `del/${id}`);
   }
 

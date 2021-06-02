@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Proyecto } from 'src/app/Models/proyecto';
 import { Tarea } from 'src/app/Models/tarea';
+import { TareaDTO } from 'src/app/Models/tareaDTO';
 import { Usuario } from 'src/app/Models/usuario';
 import { ProyectoService } from 'src/app/service/proyecto.service';
 import { TareaService } from 'src/app/service/tarea.service';
@@ -101,17 +102,27 @@ export class ListarTareaComponent implements OnInit {
    * @param id ID DE LA TAREA A BORRAR
    */
   borrar(id: number) {
+
+    let tareaDTO = new TareaDTO(0,'', this.tareas[0]);
+
     this.service.delete(id).subscribe(
       data => {
-        this.toastr.success('Tarea eliminada', 'Eliminado', {
-          timeOut: 3000
-        });
+        
+        tareaDTO = data;
+
+        console.log(tareaDTO);
+
+        //SI EL RESULTADO ES EL ESPERADO SE INFORMA AL USUARIO
+        if(tareaDTO.codigo >= 200 && tareaDTO.codigo < 300 ){          
+          this.toastr.success(tareaDTO.mensaje, 'Correcto', {
+            timeOut: 3000
+          });
+        }else{
+          this.toastr.error(tareaDTO.mensaje, 'Error ' + tareaDTO.codigo, {
+            timeOut: 3000
+          });
+        }
         this.cargarHomeworks();
-      }, 
-      err => {
-        this.toastr.error('La tarea no ha podido ser eliminada', 'Error', {
-          timeOut: 3000
-        });
       }
     );
   }

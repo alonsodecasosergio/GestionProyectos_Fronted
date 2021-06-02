@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { Usuario } from '../Models/usuario';
+import { UsuarioDTO } from '../Models/usuarioDTO';
 
 /**
  * SERVICIO DEL MODELO USUARIO
@@ -41,7 +42,7 @@ export class UsuarioService {
    * @param usuario USUARIO EL CUAL SE VA A LOGUEAR EN LA APLICACION
    * @returns 
    */
-  public checked(usuario: Usuario): Observable<Usuario>{
+  public checked(usuario: Usuario): Observable<UsuarioDTO>{
     return this.httpClient.post<any>(this.URL + 'checked', usuario);
   }
 

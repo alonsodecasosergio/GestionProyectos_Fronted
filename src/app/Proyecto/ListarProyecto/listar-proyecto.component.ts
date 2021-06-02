@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Proyecto } from 'src/app/Models/proyecto';
+import { ProyectoDTO } from 'src/app/Models/proyectoDTO';
 import { ProyectoService } from 'src/app/service/proyecto.service';
 
 @Component({
@@ -48,21 +49,29 @@ export class ListarProyectoComponent implements OnInit {
    * @param id DEL PROYECTO A BORRAR
    */
   borrar(id: number) {
+
+    let proyectoDTO = new ProyectoDTO(0, '', this.proyectos[0]);
+
     //SE PASA EL ID AL SERVICIO
     this.service.delete(id).subscribe(
       data => {
-        //SI TODO HA IDO CORRECTO SE INFORMA AL USUAIRO
-        this.toastr.success('Proyecto eliminado', 'Eliminado', {
-          timeOut: 3000
-        });
-        //SE VUELVEN A CARGAR LOS PROYECTOS
+
+        proyectoDTO = data;
+
+        console.log(proyectoDTO);
+
+        if(proyectoDTO.codigo >= 200 && proyectoDTO.codigo < 300){
+          this.toastr.success(proyectoDTO.mensaje, 'Correcto', {
+            timeOut: 3000
+          });
+          //SE VUELVEN A CARGAR LOS PROYECTOS
         this.cargarProyectos();
-      }, 
-      err => {
-        //SI SUCEDE UN ERROR SE INFORMA AL USUARIO
-        this.toastr.error('No se puede eliminar porque quedan tareas pendientes', 'Error', {
-          timeOut: 3000
-        });
+
+        }else{
+          this.toastr.error(proyectoDTO.mensaje, 'Error ' + proyectoDTO.codigo, {
+            timeOut: 3000
+          });
+        }
       }
     );
   }

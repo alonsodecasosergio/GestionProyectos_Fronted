@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Proyecto } from 'src/app/Models/proyecto';
 import { Tarea } from 'src/app/Models/tarea';
+import { TareaDTO } from 'src/app/Models/tareaDTO';
 import { Usuario } from 'src/app/Models/usuario';
 import { ProyectoService } from 'src/app/service/proyecto.service';
 import { TareaService } from 'src/app/service/tarea.service';
@@ -64,22 +65,28 @@ export class EditTareaComponent implements OnInit {
     //SE RECOGE EL ID PASADO COMO PARAMETRO
     const id = this.activatedRoute.snapshot.params.id;
 
+    let tareaDTO = new TareaDTO(0,'', this.tarea);
+
     //SE ENVIA EL ID Y LA TAREA CON LOS NUEVOS VALORES AL SERVIDOR PARA QUE LA ACTUALICE
     this.service.update(id, this.tarea).subscribe(
       //INFORMA AL USUAIRO DE LO OCURRIDO
       data => {
-        this.toastr.success('Tarea actualizada', 'Correcto', {
-          timeOut: 3000
-        });
-        this.router.navigate(['homework/' + this.tarea.proyecto.id]);
-    },
-    err => {
-      this.toastr.error('Error al editar la tarea', 'Error', {
-        timeOut: 3000
-      });
-      this.router.navigate(['homework/' + this.tarea.proyecto.id]);
-    } 
+        tareaDTO = data;
 
+        console.log(tareaDTO);
+
+        //SI EL RESULTADO ES EL ESPERADO SE INFORMA AL USUARIO
+        if(tareaDTO.codigo >= 200 && tareaDTO.codigo < 300 ){          
+          this.toastr.success(tareaDTO.mensaje, 'Correcto', {
+            timeOut: 3000
+          });
+        }else{
+          this.toastr.error(tareaDTO.mensaje, 'Error ' + tareaDTO.codigo, {
+            timeOut: 3000
+          });
+        }
+        this.router.navigate(['homework/' + this.tarea.proyecto.id]);
+      }
     );
 
   }

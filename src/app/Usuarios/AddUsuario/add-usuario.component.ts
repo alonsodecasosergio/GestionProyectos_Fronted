@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Proyecto } from 'src/app/Models/proyecto';
+import { TareaDTO } from 'src/app/Models/tareaDTO';
 import { Usuario } from 'src/app/Models/usuario';
+import { UsuarioDTO } from 'src/app/Models/usuarioDTO';
 import { ProyectoService } from 'src/app/service/proyecto.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
@@ -64,19 +66,32 @@ export class AddUsuarioComponent implements OnInit {
 
     //CREACION DEL USUARIO CON LOS VALORES DEL FORMULARIO
     const usuario = new Usuario(this.proyecto, this.nombre, this.apellidos, this.email, this.password);
+    
+    let usuarioDTO = new UsuarioDTO(0,'',usuario);
+
     //AÑADIDO DEL USUAIRO AL SERVICIO
     this.service.add(usuario).subscribe(
       data => {
-          this.toastr.success('Usuario creado correctamente', 'Correcto', {
+
+        usuarioDTO = data;
+
+        console.log(usuarioDTO);
+
+        if(usuarioDTO.codigo >= 200 && usuarioDTO.codigo < 300){
+          this.toastr.success(usuarioDTO.mensaje, 'Correcto', {
             timeOut: 3000
           });
           this.router.navigate(['login']);
-      },
-      err => {
-        this.toastr.error('Error al crear el usuario', 'Error', {
-          timeOut: 3000
-        });
-        this.router.navigate(['registrar']);
+
+        }else{
+
+          this.toastr.error(usuarioDTO.mensaje, 'Error ' + usuarioDTO.codigo, {
+            timeOut: 3000
+          });
+
+          this.router.navigate(['registrar']);
+
+        }
       }
     ); 
   }

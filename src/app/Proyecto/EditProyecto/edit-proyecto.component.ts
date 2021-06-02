@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Proyecto } from 'src/app/Models/proyecto';
+import { ProyectoDTO } from 'src/app/Models/proyectoDTO';
 import { ProyectoService } from 'src/app/service/proyecto.service';
 
 @Component({
@@ -47,24 +48,26 @@ export class EditProyectoComponent implements OnInit {
     //RECUPERACION EL ID DEL PROYECTO MEDIANTE PARAMETRO
     const id = this.activatedRoute.snapshot.params.id;
 
+    let proyectoDTO = new ProyectoDTO(0, '', this.proyecto);
+
     //ENVIO DEL OBJETO ACTUALIZADO AL SERVICIO
     this.service.update(id, this.proyecto).subscribe(
       data => {
 
-        //SI EL RESULTADO ES EL CORRECTO SE INFORMA AL USUARIO
-        this.toastr.success('Proyecto editado', 'Correcto', {
-          timeOut: 3000
-        });
+        proyectoDTO = data;
 
-        //SE VUELVE AL LISTADO INICIAL
-        this.router.navigate(['/']);
-      },
-      err => {
-        //SI SUCEDE ALGUN ERROR SE INFORMA AL USUARIO
-        this.toastr.error('Error al editar el proyecto', 'Error', {
-          timeOut: 3000
-        });
-        //SE VUELVE AL LISTADO INICIAL
+        console.log(proyectoDTO);
+
+        //SEGUN EL CODIGO DE ERROR SE MUESTRA UN MENSAJE U OTRO
+        if(proyectoDTO.codigo >= 200 && proyectoDTO.codigo < 300 ){          
+          this.toastr.success(proyectoDTO.mensaje, 'Correcto', {
+            timeOut: 3000
+          });
+        }else{
+          this.toastr.error(proyectoDTO.mensaje, 'Error ' + proyectoDTO.codigo, {
+            timeOut: 3000
+          });
+        }
         this.router.navigate(['/']);
       }
     );
